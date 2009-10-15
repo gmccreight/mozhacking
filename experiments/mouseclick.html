@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <title>Event Listeners Test</title>
+
+        <script type="text/javascript">
+
+            function synthesizeClick() {
+
+                netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+
+                var button = 0;
+                var clickCount = 1;
+                var modifiers = 0;
+                var left = document.getElementById('but_to_click').getBoundingClientRect().left + 1;
+                var top = document.getElementById('but_to_click').getBoundingClientRect().top + 1;
+
+                var utils = window.QueryInterface(Components.interfaces.nsIInterfaceRequestor).
+                  getInterface(Components.interfaces.nsIDOMWindowUtils);
+
+                utils.sendMouseEvent("mousedown", left, top, button, clickCount, modifiers);
+                utils.sendMouseEvent("mouseup", left, top, button, clickCount, modifiers);
+
+            }
+
+        </script>
+
+    </head>
+
+    <body onload="synthesizeClick()">
+        <button id="but_to_click" onclick="document.getElementById('log').innerHTML = 'button was clicked'">Button to Click with Synthesized Click</button>
+        <div id="log" style="color:green;"></div>
+    </body>
+
+</html>
