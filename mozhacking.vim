@@ -1,4 +1,4 @@
-let mozcmd = "!./mozhacking/install.sh ; mozmill -l mozmilllog.txt --show-errors -b ./firefox/firefox -t "
+let mozcmd = "!./mozhacking/all_install.sh ; mozmill -l mozmilllog.txt --show-errors -b ./firefox/firefox -t "
 
 " Run the currently opened test
 map <f4> :exec mozcmd . "%"<cr>
